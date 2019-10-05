@@ -1,2 +1,2 @@
 # todo-list
-simple todo list on iOS
+simple todo list app on iOS
