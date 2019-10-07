@@ -16,18 +16,21 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
     }
 
+    @IBOutlet weak var LoginTitle: UILabel!
     @IBOutlet weak var EmailTextField: UITextField!
     @IBOutlet weak var PasswordTextField: UITextField!
     
-    @IBOutlet weak var LoginButton: UIButton!
+    @IBOutlet weak var LoginButtonProperties: UIButton!
     
     @IBAction func SignInSwitcher(_ sender: UISwitch) {
         registerIsOn = sender.isOn
         
         if (sender.isOn){
-            LoginButton.setTitle("Register", for: .normal)
+            LoginButtonProperties.setTitle("Register", for: .normal)
+            LoginTitle.text = "Sign Up"
         } else {
-            LoginButton.setTitle("Log in", for: .normal)
+            LoginButtonProperties.setTitle("Log in", for: .normal)
+            LoginTitle.text = "Sign In"
         }
     }
     
@@ -52,6 +55,8 @@ class LoginVC: UIViewController {
                         self.apiClient.getTasks{ tasks, error in
                             if let error = error {
                                 self.showErrorPopup(msg : error.message)
+                            } else {
+                                self.performSegue(withIdentifier: "goToTaskList", sender: self)
                             }
                         }
                     }
@@ -67,11 +72,17 @@ class LoginVC: UIViewController {
                         self.apiClient.getTasks{ tasks, error in
                             if let error = error {
                                 self.showErrorPopup(msg : error.message)
+                            } else {
+                                self.performSegue(withIdentifier: "goToTaskList", sender: self)
                             }
                         }
                     }
             })
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! MyTasksTVC
     }
     
     private func showErrorPopup(msg : String?) -> Void {

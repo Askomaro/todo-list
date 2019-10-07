@@ -10,12 +10,10 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class APIClient{
+class APIClient {
     private let testApiUrl : String = "https://testapi.doitserver.in.ua/api"
     private var token : String = ""
-    
-    init() {}
-    
+        
     func authorizeUser(email : String, password : String, completionHandler: @escaping (ErrorModel?) -> Void) -> Void {
         //TODO: delete
         print("*** Authorize User")

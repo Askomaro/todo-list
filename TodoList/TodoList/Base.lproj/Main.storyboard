@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sign in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlO-23-LAV">
-                                <rect key="frame" x="162" y="170" width="90" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sign In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlO-23-LAV">
+                                <rect key="frame" x="162" y="170" width="100" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="TjV-KG-Nmd"/>
                                 </constraints>
@@ -57,7 +57,8 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="LoginButton:" destination="OdH-cc-CpQ" eventType="touchUpInside" id="Txv-RD-DA4"/>
+                                    <action selector="LoginButton:" destination="OdH-cc-CpQ" eventType="touchUpInside" id="Sds-Ab-yKw"/>
+                                    <segue destination="6ds-Jx-Jxl" kind="show" identifier="GoToTaskList" id="YUY-rL-CNv"/>
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2A6-iG-r8u">
@@ -65,7 +66,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="SignInSwitcher:" destination="OdH-cc-CpQ" eventType="valueChanged" id="hht-J1-Ytf"/>
-                                    <action selector="SignInUPSwitcher:" destination="OdH-cc-CpQ" eventType="valueChanged" id="63W-P7-y6r"/>
                                 </connections>
                             </switch>
                         </subviews>
@@ -77,13 +77,14 @@
                     </view>
                     <connections>
                         <outlet property="EmailTextField" destination="yrR-lT-iZv" id="L7J-yg-zuW"/>
-                        <outlet property="LoginButtonProperties" destination="diR-j1-enl" id="hDW-p1-qjg"/>
+                        <outlet property="LoginButtonProperties" destination="diR-j1-enl" id="8qr-yx-atc"/>
+                        <outlet property="LoginTitle" destination="tlO-23-LAV" id="DxK-Fh-hax"/>
                         <outlet property="PasswordTextField" destination="lIg-r2-oWd" id="F78-ng-tGM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SqW-te-5CS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-246.37681159420291" y="375"/>
+            <point key="canvasLocation" x="-247.19999999999999" y="374.6305418719212"/>
         </scene>
         <!--MyTasksTVC-->
         <scene sceneID="ikO-wW-vuq">
