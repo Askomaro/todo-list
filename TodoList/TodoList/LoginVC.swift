@@ -10,14 +10,26 @@ import UIKit
 
 class LoginVC: UIViewController {
     private let apiClient : APIClient = APIClient()
-
+    private var registerIsOn : Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
     @IBOutlet weak var EmailTextField: UITextField!
     @IBOutlet weak var PasswordTextField: UITextField!
+    
+    @IBOutlet weak var LoginButton: UIButton!
+    
+    @IBAction func SignInSwitcher(_ sender: UISwitch) {
+        registerIsOn = sender.isOn
+        
+        if (sender.isOn){
+            LoginButton.setTitle("Register", for: .normal)
+        } else {
+            LoginButton.setTitle("Log in", for: .normal)
+        }
+    }
     
     @IBAction func LoginButton(_ sender: Any) {
         if EmailTextField.text == ""{
@@ -29,20 +41,37 @@ class LoginVC: UIViewController {
             return
         }
         
-        apiClient.authorizeUser(
-            email: EmailTextField.text!,
-            password: PasswordTextField.text!,
-            completionHandler: {error in
-                if let error = error{
-                    self.showErrorPopup(msg : error.message)
-                } else {
-                    self.apiClient.getTasks{
-                        if let error = $1 {
-                            self.showErrorPopup(msg : error.message)
+        if (registerIsOn) {
+            apiClient.createUser(
+                email: EmailTextField.text!,
+                password: PasswordTextField.text!,
+                completionHandler: {error in
+                    if let error = error {
+                        self.showErrorPopup(msg : error.message)
+                    } else {
+                        self.apiClient.getTasks{ tasks, error in
+                            if let error = error {
+                                self.showErrorPopup(msg : error.message)
+                            }
                         }
                     }
-                }
-        })
+            })
+        } else {
+            apiClient.authorizeUser(
+                email: EmailTextField.text!,
+                password: PasswordTextField.text!,
+                completionHandler: {error in
+                    if let error = error {
+                        self.showErrorPopup(msg : error.message)
+                    } else {
+                        self.apiClient.getTasks{ tasks, error in
+                            if let error = error {
+                                self.showErrorPopup(msg : error.message)
+                            }
+                        }
+                    }
+            })
+        }
     }
     
     private func showErrorPopup(msg : String?) -> Void {
