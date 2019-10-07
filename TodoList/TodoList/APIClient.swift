@@ -8,15 +8,102 @@
 
 import Foundation
 import Alamofire
-
+import SwiftyJSON
 
 class APIClient{
-    let testApi : String = "https://testapi.doitserver.in.ua/api/tasks"
+    private let testApiUrl : String = "https://testapi.doitserver.in.ua/api"
+    private var token : String? = ""
     
     init() {}
     
-    func getTasks(page : Int = 1, sortOption : String) -> Void {
-        //
+    func authorizeUser(email : String, password : String, completionHandler: @escaping (ErrorModel?) -> Void) -> Void {
+        print("Authorize User")
+        let parameters = [
+            "email": email,
+            "password": password
+        ]
+        
+        request("\(testApiUrl)/auth", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: ["Content-Type" : "application/json"])
+            .responseJSON{ response in
+                switch response.result {
+                case .success:
+                    let error = self.validate(response: response)
+                    completionHandler(error)
+                    
+                    let json_resp = self.mapToJson(data: response.data!)
+                    self.token = json_resp?["token"].string
+                    
+                case .failure(let error):
+                    print(error)
+                }
+        }
+    }
+    
+    func getTasks(page : Int = 0, sortOption : String = "title asc", completionHandler: @escaping ([Int], ErrorModel?) -> Void) -> Void {
+        print("Get tasks")
+        var tasks : [Int] = []
+        print(self.token)
+        request("\(testApiUrl)/tasks",
+                method: .get,
+                parameters: ["sort" : sortOption, "page" : page],
+                headers: [
+                    "Content-Type" : "application/json",
+                    "Authorization" : "Bearer \(self.token)"
+            ])
+            .responseJSON{ response in
+                switch response.result {
+                    case .success:
+                        
+                        let error = self.validate(response: response)
+                        
+                        if let json = response.data {
+                            do{
+                                let data = try JSON(data: json)
+//                                let str = data["headers"]["Host"]
+                                print("DATA PARSED: \(data)")
+                            }
+                            catch{
+                                print("JSON Error")
+                            }
+                            
+                        }
+                        completionHandler(tasks, error)
+                    
+                    case .failure(let error):
+                        print(error)
+                    }
+            }
+    }
+    
+    private func validate(response : DataResponse<Any>) -> ErrorModel? {
+        var error : ErrorModel? = nil
+        
+        if(200..<300 ~= response.response!.statusCode){
+        }else{
+            error = ErrorModel(statusCode: response.response!.statusCode, message: JSON(response.data!)["message"].string)
+        }
+        
+        return error
+    }
+    
+    private func mapToJson(data : Data) -> JSON? {
+        var json : JSON? = nil
+        do{
+            json = try JSON(data: data)
+        }
+        catch{
+            print("JSON Error")
+        }
+
+        return json
+    }
+    
+    private func showErrorPopup(msg : String) -> Void {
+        let alertController = UIAlertController(title: "Error", message:
+        msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Try again", style: .default))
+    
+//        self.present(alertController, animated: true, completion: nil)
     }
     
 //    func getArticlesModel(completionHandler: @escaping ([ArticleModel]) -> Void) -> Void {

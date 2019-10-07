@@ -14,22 +14,34 @@ class MyTasksTVC : UITableViewController {
 
     }
     
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//
-//        return 5
-//    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        return 5
+    }
     
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "articelTableViewCell") as! ArticleTableViewCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell") as! ArticleTableViewCell
 //
 //
-//        cell.mainLabelTitle.text = "ds"
-//        cell.infoLabel.text = "tmppp"
-////        cell.mainImageView.sd_setImage(with : articlesModel[indexPath.row].imageURL)
-//        cell.textView.text = "desc"
+////        cell.mainLabelTitle.text = "ds"
+////        cell.infoLabel.text = "tmppp"
+//////        cell.mainImageView.sd_setImage(with : articlesModel[indexPath.row].imageURL)
+////        cell.textView.text = "desc"
 //
 //        return cell
 //    }
+    
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "Section \(section)"
+//    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
+        
+        cell.textLabel?.text = "Row \(indexPath.row)"
+        
+        return cell
+    }
     
 //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 ////        SVProgressHUD.show()
