@@ -14,10 +14,7 @@ class APIClient {
     private let testApiUrl : String = "https://testapi.doitserver.in.ua/api"
     private var token : String = ""
         
-    func authorizeUser(email : String, password : String, completionHandler: @escaping (ErrorModel?) -> Void) -> Void {
-        //TODO: delete
-        print("*** Authorize User")
-        
+    func authorizeUser(email : String, password : String, completionHandler: @escaping (ErrorModel?) -> Void) -> Void {        
         let parameters = [
             "email": email,
             "password": password
