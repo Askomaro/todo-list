@@ -28,11 +28,11 @@ class APIClient {
                 switch response.result {
                 case .success:
                     let error = self.validate(response: response)
-                    completionHandler(error)
                     
                     let json_resp = self.mapToJson(data: response.data!)
                     self.token = json_resp?["token"].string ?? ""
                     
+                    completionHandler(error)
                 case .failure(let error):
                     print(error)
                 }
@@ -40,9 +40,6 @@ class APIClient {
     }
     
     func createUser(email : String, password : String, completionHandler: @escaping (ErrorModel?) -> Void) -> Void {
-        //TODO: delete
-        print("*** Create User")
-        
         let parameters = [
             "email": email,
             "password": password
@@ -65,7 +62,6 @@ class APIClient {
     }
     
     func getTasks(page : Int = 0, sortOption : String = "title asc", completionHandler: @escaping ([TaskModel], ErrorModel?) -> Void) -> Void {
-        print("Get tasks")
         var tasks : [TaskModel] = []
         
         request("\(testApiUrl)/tasks",
@@ -89,7 +85,6 @@ class APIClient {
     }
     
     func createTask(title : String, dueBy : Int, priority : String, completionHandler: @escaping (ErrorModel?) -> Void) -> Void {
-        print("Create tasks")
         
         request("\(testApiUrl)/tasks",
             method: .post,
@@ -111,8 +106,6 @@ class APIClient {
     }
     
     func getTask(task : TaskModel, completionHandler: @escaping (TaskModel, ErrorModel?) -> Void) -> Void {
-        print("Get task")
-        
         request("\(testApiUrl)/tasks/\(task.id)",
             method: .get,
             headers: [
@@ -133,8 +126,7 @@ class APIClient {
     }
     
     func updateTask(task : TaskModel, completionHandler: @escaping (ErrorModel?) -> Void) -> Void {
-        print("update task")
-        
+
         request("\(testApiUrl)/tasks/\(task.id)",
             method: .put,
             parameters: ["title" : task.title, "dueBy" : task.dueBy, "priority" : task.priority],
@@ -155,7 +147,6 @@ class APIClient {
     }
     
     func deleteTask(task : TaskModel, completionHandler: @escaping (ErrorModel?) -> Void) -> Void {
-        print("Delete task")
         
         request("\(testApiUrl)/tasks/\(task.id)",
             method: .delete,

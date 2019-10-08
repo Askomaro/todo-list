@@ -56,7 +56,7 @@ class LoginVC: UIViewController {
                             if let error = error {
                                 self.showErrorPopup(msg : error.message)
                             } else {
-                                self.performSegue(withIdentifier: "goToTaskList", sender: self)
+                                self.showMyTasksTVC()
                             }
                         }
                     }
@@ -73,7 +73,8 @@ class LoginVC: UIViewController {
                             if let error = error {
                                 self.showErrorPopup(msg : error.message)
                             } else {
-                                self.performSegue(withIdentifier: "goToTaskList", sender: self)
+                                print(tasks)
+                                self.showMyTasksTVC()
                             }
                         }
                     }
@@ -81,8 +82,9 @@ class LoginVC: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! MyTasksTVC
+    private func showMyTasksTVC() -> Void {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "NaviC") as! UINavigationController
+        self.present(vc, animated: true, completion: nil)
     }
     
     private func showErrorPopup(msg : String?) -> Void {
