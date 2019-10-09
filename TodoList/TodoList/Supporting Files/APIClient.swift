@@ -25,7 +25,6 @@ class APIClient {
                 switch response.result {
                 case .success:
                     let error = self.validate(response: response)
-                    
                     let json_resp = self.mapToJson(data: response.data!)
                     self.token = json_resp?["token"].string ?? ""
                     
@@ -47,11 +46,10 @@ class APIClient {
                 switch response.result {
                 case .success:
                     let error = self.validate(response: response)
-                    completionHandler(error)
-                    
                     let json_resp = self.mapToJson(data: response.data!)
                     self.token = json_resp?["token"].string ?? ""
                     
+                    completionHandler(error)
                 case .failure(let error):
                     print(error)
                 }
@@ -86,11 +84,14 @@ class APIClient {
         request("\(testApiUrl)/tasks",
             method: .post,
             parameters: ["title" : title, "dueBy" : dueBy, "priority" : priority],
+            encoding: JSONEncoding.default,
             headers: [
                 "Content-Type" : "application/json",
                 "Authorization" : "Bearer \(self.token)"
             ])
+            .debugLog()
             .responseJSON{ response in
+                print(response.response)
                 switch response.result {
                 case .success:
                     let error = self.validate(response: response)
@@ -167,7 +168,7 @@ class APIClient {
         var error : ErrorModel? = nil
         
         if(200..<300 ~= response.response!.statusCode){
-        }else{
+        } else {
             error = ErrorModel(statusCode: response.response!.statusCode, message: JSON(response.data!)["message"].string)
         }
         

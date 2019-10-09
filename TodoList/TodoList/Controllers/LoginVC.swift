@@ -11,6 +11,7 @@ import UIKit
 class LoginVC: UIViewController {
     private let apiClient : APIClient = APIClient()
     private var registerIsOn : Bool = false
+    private var tasks : [TaskModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +57,7 @@ class LoginVC: UIViewController {
                             if let error = error {
                                 self.showErrorPopup(msg : error.message)
                             } else {
-                                self.showMyTasksTVC()
+                                self.performSegue(withIdentifier: "GoToNavCon", sender: self)
                             }
                         }
                     }
@@ -73,8 +74,8 @@ class LoginVC: UIViewController {
                             if let error = error {
                                 self.showErrorPopup(msg : error.message)
                             } else {
-                                print(tasks)
-                                self.showMyTasksTVC()
+                                self.tasks = tasks
+                                self.performSegue(withIdentifier: "GoToNavCon", sender: self)
                             }
                         }
                     }
@@ -82,9 +83,12 @@ class LoginVC: UIViewController {
         }
     }
     
-    private func showMyTasksTVC() -> Void {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "NaviC") as! UINavigationController
-        self.present(vc, animated: true, completion: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationNC = segue.destination as! UINavigationController
+        let destinationVC = destinationNC.topViewController as! MyTasksTVC
+        
+        destinationVC.apiClient = apiClient
+        destinationVC.tasks = tasks
     }
     
     private func showErrorPopup(msg : String?) -> Void {
