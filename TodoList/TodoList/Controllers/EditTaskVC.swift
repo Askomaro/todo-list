@@ -39,6 +39,12 @@ class EditTaskVC: UIViewController {
     }
 
     private func updateUI() -> Void {
+        MainTitleTX.layer.borderWidth = 0.5
+        MainTitleTX.layer.cornerRadius = 6
+        
+        DescriptionTV.layer.borderWidth = 0.5
+        DescriptionTV.layer.cornerRadius = 6
+        
         MainTitleTX.text = taskModel!.title
         
         switch taskModel!.priority {

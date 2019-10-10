@@ -24,13 +24,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test@app.com" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yrR-lT-iZv">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yrR-lT-iZv">
                                 <rect key="frame" x="77" y="223" width="220" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1234" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lIg-r2-oWd">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lIg-r2-oWd">
                                 <rect key="frame" x="77" y="265" width="220" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -128,6 +128,7 @@
                             <constraint firstItem="rIF-eE-7Bc" firstAttribute="leading" secondItem="ATe-yW-EdB" secondAttribute="leading" id="5v9-7F-HDM"/>
                             <constraint firstItem="JKv-xU-TJA" firstAttribute="leading" secondItem="ATe-yW-EdB" secondAttribute="leading" constant="267" id="Dya-JQ-4TG"/>
                             <constraint firstItem="rIF-eE-7Bc" firstAttribute="top" secondItem="ATe-yW-EdB" secondAttribute="top" id="InG-hm-tdE"/>
+                            <constraint firstItem="JKv-xU-TJA" firstAttribute="bottom" secondItem="ATe-yW-EdB" secondAttribute="bottom" id="O22-8A-j7K"/>
                             <constraint firstItem="ATe-yW-EdB" firstAttribute="trailing" secondItem="JKv-xU-TJA" secondAttribute="trailing" constant="16" id="WMl-1g-Bai"/>
                             <constraint firstItem="JKv-xU-TJA" firstAttribute="bottom" secondItem="ATe-yW-EdB" secondAttribute="bottom" id="Wsv-7d-5T8"/>
                             <constraint firstItem="rIF-eE-7Bc" firstAttribute="trailing" secondItem="ATe-yW-EdB" secondAttribute="trailing" id="dYX-ru-THr"/>
@@ -200,9 +201,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jmp-Qx-3m9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jmp-Qx-3m9">
                                 <rect key="frame" x="25" y="111" width="29" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -256,9 +256,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3e-uF-RVy">
-                                <rect key="frame" x="16" y="688" width="343" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3e-uF-RVy">
+                                <rect key="frame" x="16" y="699" width="343" height="30"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="ADD">
@@ -270,6 +269,13 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Jmp-Qx-3m9" firstAttribute="top" secondItem="pgI-SP-Y5y" secondAttribute="top" constant="23" id="1t6-yh-ynJ"/>
+                            <constraint firstItem="Jmp-Qx-3m9" firstAttribute="leading" secondItem="pgI-SP-Y5y" secondAttribute="leading" constant="25" id="7Iq-PU-2AW"/>
+                            <constraint firstItem="v3e-uF-RVy" firstAttribute="leading" secondItem="pgI-SP-Y5y" secondAttribute="leading" constant="16" id="Aee-RP-dVn"/>
+                            <constraint firstItem="pgI-SP-Y5y" firstAttribute="trailing" secondItem="v3e-uF-RVy" secondAttribute="trailing" constant="16" id="G2W-Gy-47o"/>
+                            <constraint firstItem="v3e-uF-RVy" firstAttribute="bottom" secondItem="pgI-SP-Y5y" secondAttribute="bottom" id="G9X-4q-QOb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="pgI-SP-Y5y"/>
                     </view>
                     <toolbarItems/>
@@ -348,9 +354,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvb-oq-6Tg">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvb-oq-6Tg">
                                 <rect key="frame" x="25" y="111" width="29" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -404,9 +409,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sM-Zd-3u0">
-                                <rect key="frame" x="16" y="688" width="343" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sM-Zd-3u0">
+                                <rect key="frame" x="16" y="699" width="343" height="30"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="DELETE">
@@ -418,6 +422,13 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kvb-oq-6Tg" firstAttribute="leading" secondItem="yCc-fl-4gI" secondAttribute="leading" constant="25" id="1H4-Kg-xgv"/>
+                            <constraint firstItem="yCc-fl-4gI" firstAttribute="trailing" secondItem="6sM-Zd-3u0" secondAttribute="trailing" constant="16" id="lpB-wE-i89"/>
+                            <constraint firstItem="6sM-Zd-3u0" firstAttribute="bottom" secondItem="yCc-fl-4gI" secondAttribute="bottom" id="lrI-Ny-gJz"/>
+                            <constraint firstItem="6sM-Zd-3u0" firstAttribute="leading" secondItem="yCc-fl-4gI" secondAttribute="leading" constant="16" id="oyT-JH-Cc9"/>
+                            <constraint firstItem="kvb-oq-6Tg" firstAttribute="top" secondItem="yCc-fl-4gI" secondAttribute="top" constant="23" id="pTL-vV-1oV"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="yCc-fl-4gI"/>
                     </view>
                     <toolbarItems/>
