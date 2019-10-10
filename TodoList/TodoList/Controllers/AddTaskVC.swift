@@ -8,9 +8,10 @@
 
 import UIKit
 
-class TaskDetailsVC: UIViewController {
+class AddTaskVC: UIViewController {
     var apiCLient : APIClient?
-    var mainVC : UIViewController?
+    
+    weak var delegate: MyTasksTVCProtocol?
     
     @IBOutlet weak var TitleTV: UITextView!
     @IBOutlet weak var PrioritySC: UISegmentedControl!
@@ -51,7 +52,7 @@ class TaskDetailsVC: UIViewController {
                 if let error = error {
                     self.showErrorPopup(msg : error.message)
                 } else {
-//                    self.present(self.mainVC!, animated: true, completion: nil)
+                    self.delegate?.updateUI(sortOption: SortOptionEnum.byTitle)
                     self.navigationController?.popViewController(animated: true)
                 }
             })
@@ -79,3 +80,4 @@ class TaskDetailsVC: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 }
+

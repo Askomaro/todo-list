@@ -16,11 +16,14 @@
 		D096B0E2234892D6006CBD80 /* TodoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096B0E1234892D6006CBD80 /* TodoListTests.swift */; };
 		D096B0F0234A57ED006CBD80 /* MyTasksTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096B0EF234A57ED006CBD80 /* MyTasksTVC.swift */; };
 		D096B0F2234A7D05006CBD80 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096B0F1234A7D04006CBD80 /* APIClient.swift */; };
-		D096B0F4234A85A8006CBD80 /* TaskDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096B0F3234A85A8006CBD80 /* TaskDetailsVC.swift */; };
+		D096B0F4234A85A8006CBD80 /* AddTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096B0F3234A85A8006CBD80 /* AddTaskVC.swift */; };
 		D096E949234B563B0023C16D /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096E948234B563B0023C16D /* TaskModel.swift */; };
 		D096E94B234B5F330023C16D /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096E94A234B5F330023C16D /* ErrorModel.swift */; };
 		D0C51711234E0C0A0072913B /* PriorityEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C51710234E0C0A0072913B /* PriorityEnum.swift */; };
 		D0C51714234E23550072913B /* RequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C51713234E23540072913B /* RequestExtension.swift */; };
+		D0C51716234F10350072913B /* EditTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C51715234F10350072913B /* EditTaskVC.swift */; };
+		D0C51718234F56430072913B /* MyTasksTVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C51717234F56430072913B /* MyTasksTVCProtocol.swift */; };
+		D0C5171A234F5F870072913B /* SortOptionsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C51719234F5F870072913B /* SortOptionsEnum.swift */; };
 		F17D538EA782B12E81C2A712 /* Pods_TodoListTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F745EF388DA7E7A293BB14B7 /* Pods_TodoListTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,11 +53,14 @@
 		D096B0E3234892D6006CBD80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D096B0EF234A57ED006CBD80 /* MyTasksTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTasksTVC.swift; sourceTree = "<group>"; };
 		D096B0F1234A7D04006CBD80 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		D096B0F3234A85A8006CBD80 /* TaskDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsVC.swift; sourceTree = "<group>"; };
+		D096B0F3234A85A8006CBD80 /* AddTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskVC.swift; sourceTree = "<group>"; };
 		D096E948234B563B0023C16D /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		D096E94A234B5F330023C16D /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		D0C51710234E0C0A0072913B /* PriorityEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityEnum.swift; sourceTree = "<group>"; };
 		D0C51713234E23540072913B /* RequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestExtension.swift; sourceTree = "<group>"; };
+		D0C51715234F10350072913B /* EditTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskVC.swift; sourceTree = "<group>"; };
+		D0C51717234F56430072913B /* MyTasksTVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTasksTVCProtocol.swift; sourceTree = "<group>"; };
+		D0C51719234F5F870072913B /* SortOptionsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionsEnum.swift; sourceTree = "<group>"; };
 		EB67B12D1664361B3C4B9E29 /* Pods-TodoListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoListTests.debug.xcconfig"; path = "Target Support Files/Pods-TodoListTests/Pods-TodoListTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F745EF388DA7E7A293BB14B7 /* Pods_TodoListTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoListTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA4D1D4E7BD38941571E6464 /* Pods_TodoList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +154,7 @@
 				D096E948234B563B0023C16D /* TaskModel.swift */,
 				D096E94A234B5F330023C16D /* ErrorModel.swift */,
 				D0C51710234E0C0A0072913B /* PriorityEnum.swift */,
+				D0C51719234F5F870072913B /* SortOptionsEnum.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -166,8 +173,10 @@
 			children = (
 				D096B0CE234892D4006CBD80 /* LoginVC.swift */,
 				D096B0EF234A57ED006CBD80 /* MyTasksTVC.swift */,
-				D096B0F3234A85A8006CBD80 /* TaskDetailsVC.swift */,
+				D096B0F3234A85A8006CBD80 /* AddTaskVC.swift */,
 				D096B0CC234892D4006CBD80 /* AppDelegate.swift */,
+				D0C51715234F10350072913B /* EditTaskVC.swift */,
+				D0C51717234F56430072913B /* MyTasksTVCProtocol.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -357,13 +366,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D096B0F4234A85A8006CBD80 /* TaskDetailsVC.swift in Sources */,
+				D096B0F4234A85A8006CBD80 /* AddTaskVC.swift in Sources */,
 				D096E949234B563B0023C16D /* TaskModel.swift in Sources */,
 				D096B0F0234A57ED006CBD80 /* MyTasksTVC.swift in Sources */,
+				D0C51718234F56430072913B /* MyTasksTVCProtocol.swift in Sources */,
 				D096B0F2234A7D05006CBD80 /* APIClient.swift in Sources */,
+				D0C5171A234F5F870072913B /* SortOptionsEnum.swift in Sources */,
 				D0C51711234E0C0A0072913B /* PriorityEnum.swift in Sources */,
 				D096B0CF234892D4006CBD80 /* LoginVC.swift in Sources */,
 				D096E94B234B5F330023C16D /* ErrorModel.swift in Sources */,
+				D0C51716234F10350072913B /* EditTaskVC.swift in Sources */,
 				D0C51714234E23550072913B /* RequestExtension.swift in Sources */,
 				D096B0CD234892D4006CBD80 /* AppDelegate.swift in Sources */,
 			);

@@ -8,7 +8,8 @@
 
 import UIKit
 
-class MyTasksTVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MyTasksTVC : UIViewController, UITableViewDelegate, UITableViewDataSource, MyTasksTVCProtocol {
+    
     var apiClient : APIClient?
     var tasks: [TaskModel] = []
     
@@ -17,8 +18,12 @@ class MyTasksTVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var MyTasksTV: UITableView!
     @IBOutlet weak var AddTaskButtonProperties: UIButton!
     
+    @IBAction func FilterBProperties(_ sender: Any) {
+        showPopupFilter()
+    }
+    
     @IBAction func AddTaskButton(_ sender: Any) {
-        performSegue(withIdentifier: "GoToDetails", sender: self)
+        performSegue(withIdentifier: "GoToAddTask", sender: self)
     }
     
     override func viewDidLoad() {
@@ -46,20 +51,43 @@ class MyTasksTVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
         dateFormatter.dateStyle = DateFormatter.Style.short
         let strDate = dateFormatter.string(from: Date(timeIntervalSince1970: Double(tasks[indexPath.item].dueBy)))
         
-        cell.detailTextLabel?.text = "Due to \(strDate) \t \(tasks[indexPath.item].priority)"
+        var priority = ""
+        switch tasks[indexPath.item].priority {
+        case PriorityEnum.high.rawValue:
+            priority = "↑ High"
+        case PriorityEnum.medium.rawValue:
+            priority = "Medium"
+        case PriorityEnum.low.rawValue:
+            priority = "↓ Low"
+        default:
+            priority = ""
+        }
+        
+        cell.detailTextLabel?.text = "Due to \(strDate) \t \(priority)"
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected cell #\(indexPath.row)!")
-        performSegue(withIdentifier: "GoToDetails", sender: self)
+        performSegue(withIdentifier: "GoToEditTask", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! TaskDetailsVC
-        destinationVC.apiCLient = apiClient!
-        destinationVC.mainVC = self
+        if segue.identifier == "GoToAddTask"
+        {
+            let destinationVC = segue.destination as! AddTaskVC
+            destinationVC.apiCLient = apiClient!
+            destinationVC.delegate = self
+        }
+        
+        if segue.identifier == "GoToEditTask"
+        {
+            let destinationVC = segue.destination as! EditTaskVC
+            destinationVC.apiClient = apiClient!
+            let selectedtTaskModel = tasks[MyTasksTV.indexPathForSelectedRow!.row]
+            destinationVC.taskModel = selectedtTaskModel
+            destinationVC.delegate = self
+        }
     }
     
     @objc func handleRefreshControl() {
@@ -71,8 +99,9 @@ class MyTasksTVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
         }
     }
     
-    private func updateUI() -> Void {
-        apiClient!.getTasks{ tasks, error in
+    func updateUI(sortOption : SortOptionEnum = SortOptionEnum.byTitle) -> Void {
+        apiClient!.getTasks(page: 0, sortOption : sortOption.rawValue)
+        { tasks, error in
             if let error = error {
                 self.showErrorPopup(msg : error.message)
             } else {
@@ -94,5 +123,27 @@ class MyTasksTVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
         MyTasksTV.refreshControl = UIRefreshControl()
         MyTasksTV.refreshControl?.tintColor = .white
         MyTasksTV.refreshControl?.addTarget(self, action:#selector(handleRefreshControl), for: .valueChanged)
+    }
+    
+    private func showPopupFilter() -> Void {
+        let alert = UIAlertController(title: "Filter", message: "Choose filtration for tasks displaying", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "By title", style: .default, handler: { action in
+            self.updateUI(sortOption: SortOptionEnum.byTitle)
+        }))
+        alert.addAction(UIAlertAction(title: "By priority", style: .default, handler: { action in
+            self.updateUI(sortOption: SortOptionEnum.byPriority)
+        }))
+        alert.addAction(UIAlertAction(title: "By date", style: .default, handler: { action in
+            self.updateUI(sortOption: SortOptionEnum.byDate)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
+    @objc private func handleFilterActionTitle() {
+
     }
 }

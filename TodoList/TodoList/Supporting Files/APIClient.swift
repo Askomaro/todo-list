@@ -56,7 +56,7 @@ class APIClient {
         }
     }
     
-    func getTasks(page : Int = 0, sortOption : String = "title asc", completionHandler: @escaping ([TaskModel], ErrorModel?) -> Void) -> Void {
+    func getTasks(page : Int = 0, sortOption : String = "priority", completionHandler: @escaping ([TaskModel], ErrorModel?) -> Void) -> Void {
         var tasks : [TaskModel] = []
         
         request("\(testApiUrl)/tasks",
@@ -91,7 +91,6 @@ class APIClient {
             ])
             .debugLog()
             .responseJSON{ response in
-                print(response.response)
                 switch response.result {
                 case .success:
                     let error = self.validate(response: response)
@@ -124,7 +123,6 @@ class APIClient {
     }
     
     func updateTask(task : TaskModel, completionHandler: @escaping (ErrorModel?) -> Void) -> Void {
-
         request("\(testApiUrl)/tasks/\(task.id)",
             method: .put,
             parameters: ["title" : task.title, "dueBy" : task.dueBy, "priority" : task.priority],
@@ -145,7 +143,6 @@ class APIClient {
     }
     
     func deleteTask(task : TaskModel, completionHandler: @escaping (ErrorModel?) -> Void) -> Void {
-        
         request("\(testApiUrl)/tasks/\(task.id)",
             method: .delete,
             headers: [
